@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDSistemaConsultorioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgendamentoConsultas">
+          <Key>
+            <PropertyRef Name="idAgendamento" />
+          </Key>
+          <Property Name="idAgendamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPaciente" Type="int" Nullable="false" />
+          <Property Name="idMedico" Type="int" Nullable="false" />
+          <Property Name="idEspecialidade" Type="int" Nullable="false" />
+          <Property Name="DataConsulta" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CadEspecialidades">
+          <Key>
+            <PropertyRef Name="idEspecialidade" />
+          </Key>
+          <Property Name="idEspecialidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Especialidade" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CadMedicos">
+          <Key>
+            <PropertyRef Name="idMedico" />
+          </Key>
+          <Property Name="idMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Medico" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CRO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CadPacientes">
+          <Key>
+            <PropertyRef Name="idPaciente" />
+          </Key>
+          <Property Name="idPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Paciente" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefone" Type="int" />
+        </EntityType>
+        <EntityType Name="ManutUsers">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" />
+          <Property Name="Sobrenome" Type="nvarchar(max)" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="Senha" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_AgendamentoConsultas_CadEspecialidades">
+          <End Role="CadEspecialidades" Type="Self.CadEspecialidades" Multiplicity="1" />
+          <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadEspecialidades">
+              <PropertyRef Name="idEspecialidade" />
+            </Principal>
+            <Dependent Role="AgendamentoConsultas">
+              <PropertyRef Name="idEspecialidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgendamentoConsultas_CadMedicos">
+          <End Role="CadMedicos" Type="Self.CadMedicos" Multiplicity="1" />
+          <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadMedicos">
+              <PropertyRef Name="idMedico" />
+            </Principal>
+            <Dependent Role="AgendamentoConsultas">
+              <PropertyRef Name="idMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgendamentoConsultas_CadPacientes">
+          <End Role="CadPacientes" Type="Self.CadPacientes" Multiplicity="1" />
+          <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadPacientes">
+              <PropertyRef Name="idPaciente" />
+            </Principal>
+            <Dependent Role="AgendamentoConsultas">
+              <PropertyRef Name="idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDSistemaConsultorioModelStoreContainer">
+          <EntitySet Name="AgendamentoConsultas" EntityType="Self.AgendamentoConsultas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CadEspecialidades" EntityType="Self.CadEspecialidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CadMedicos" EntityType="Self.CadMedicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CadPacientes" EntityType="Self.CadPacientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManutUsers" EntityType="Self.ManutUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AgendamentoConsultas_CadEspecialidades" Association="Self.FK_AgendamentoConsultas_CadEspecialidades">
+            <End Role="CadEspecialidades" EntitySet="CadEspecialidades" />
+            <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendamentoConsultas_CadMedicos" Association="Self.FK_AgendamentoConsultas_CadMedicos">
+            <End Role="CadMedicos" EntitySet="CadMedicos" />
+            <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendamentoConsultas_CadPacientes" Association="Self.FK_AgendamentoConsultas_CadPacientes">
+            <End Role="CadPacientes" EntitySet="CadPacientes" />
+            <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDSistemaConsultorioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgendamentoConsultas">
+          <Key>
+            <PropertyRef Name="idAgendamento" />
+          </Key>
+          <Property Name="idAgendamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPaciente" Type="Int32" Nullable="false" />
+          <Property Name="idMedico" Type="Int32" Nullable="false" />
+          <Property Name="idEspecialidade" Type="Int32" Nullable="false" />
+          <Property Name="DataConsulta" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CadEspecialidades" Relationship="Self.FK_AgendamentoConsultas_CadEspecialidades" FromRole="AgendamentoConsultas" ToRole="CadEspecialidades" />
+          <NavigationProperty Name="CadMedicos" Relationship="Self.FK_AgendamentoConsultas_CadMedicos" FromRole="AgendamentoConsultas" ToRole="CadMedicos" />
+          <NavigationProperty Name="CadPacientes" Relationship="Self.FK_AgendamentoConsultas_CadPacientes" FromRole="AgendamentoConsultas" ToRole="CadPacientes" />
+        </EntityType>
+        <EntityType Name="CadEspecialidades">
+          <Key>
+            <PropertyRef Name="idEspecialidade" />
+          </Key>
+          <Property Name="idEspecialidade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Especialidade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AgendamentoConsultas" Relationship="Self.FK_AgendamentoConsultas_CadEspecialidades" FromRole="CadEspecialidades" ToRole="AgendamentoConsultas" />
+        </EntityType>
+        <EntityType Name="CadMedicos">
+          <Key>
+            <PropertyRef Name="idMedico" />
+          </Key>
+          <Property Name="idMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Medico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CRO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AgendamentoConsultas" Relationship="Self.FK_AgendamentoConsultas_CadMedicos" FromRole="CadMedicos" ToRole="AgendamentoConsultas" />
+        </EntityType>
+        <EntityType Name="CadPacientes">
+          <Key>
+            <PropertyRef Name="idPaciente" />
+          </Key>
+          <Property Name="idPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Paciente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefone" Type="Int32" />
+          <NavigationProperty Name="AgendamentoConsultas" Relationship="Self.FK_AgendamentoConsultas_CadPacientes" FromRole="CadPacientes" ToRole="AgendamentoConsultas" />
+        </EntityType>
+        <EntityType Name="ManutUsers">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sobrenome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_AgendamentoConsultas_CadEspecialidades">
+          <End Role="CadEspecialidades" Type="Self.CadEspecialidades" Multiplicity="1" />
+          <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadEspecialidades">
+              <PropertyRef Name="idEspecialidade" />
+            </Principal>
+            <Dependent Role="AgendamentoConsultas">
+              <PropertyRef Name="idEspecialidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgendamentoConsultas_CadMedicos">
+          <End Role="CadMedicos" Type="Self.CadMedicos" Multiplicity="1" />
+          <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadMedicos">
+              <PropertyRef Name="idMedico" />
+            </Principal>
+            <Dependent Role="AgendamentoConsultas">
+              <PropertyRef Name="idMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgendamentoConsultas_CadPacientes">
+          <End Role="CadPacientes" Type="Self.CadPacientes" Multiplicity="1" />
+          <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadPacientes">
+              <PropertyRef Name="idPaciente" />
+            </Principal>
+            <Dependent Role="AgendamentoConsultas">
+              <PropertyRef Name="idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDSistemaConsultorioEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgendamentoConsultas" EntityType="Self.AgendamentoConsultas" />
+          <EntitySet Name="CadEspecialidades" EntityType="Self.CadEspecialidades" />
+          <EntitySet Name="CadMedicos" EntityType="Self.CadMedicos" />
+          <EntitySet Name="CadPacientes" EntityType="Self.CadPacientes" />
+          <EntitySet Name="ManutUsers" EntityType="Self.ManutUsers" />
+          <AssociationSet Name="FK_AgendamentoConsultas_CadEspecialidades" Association="Self.FK_AgendamentoConsultas_CadEspecialidades">
+            <End Role="CadEspecialidades" EntitySet="CadEspecialidades" />
+            <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendamentoConsultas_CadMedicos" Association="Self.FK_AgendamentoConsultas_CadMedicos">
+            <End Role="CadMedicos" EntitySet="CadMedicos" />
+            <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendamentoConsultas_CadPacientes" Association="Self.FK_AgendamentoConsultas_CadPacientes">
+            <End Role="CadPacientes" EntitySet="CadPacientes" />
+            <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDSistemaConsultorioModelStoreContainer" CdmEntityContainer="BDSistemaConsultorioEntities">
+          <EntitySetMapping Name="AgendamentoConsultas">
+            <EntityTypeMapping TypeName="BDSistemaConsultorioModel.AgendamentoConsultas">
+              <MappingFragment StoreEntitySet="AgendamentoConsultas">
+                <ScalarProperty Name="idAgendamento" ColumnName="idAgendamento" />
+                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+                <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+                <ScalarProperty Name="idEspecialidade" ColumnName="idEspecialidade" />
+                <ScalarProperty Name="DataConsulta" ColumnName="DataConsulta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CadEspecialidades">
+            <EntityTypeMapping TypeName="BDSistemaConsultorioModel.CadEspecialidades">
+              <MappingFragment StoreEntitySet="CadEspecialidades">
+                <ScalarProperty Name="idEspecialidade" ColumnName="idEspecialidade" />
+                <ScalarProperty Name="Especialidade" ColumnName="Especialidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CadMedicos">
+            <EntityTypeMapping TypeName="BDSistemaConsultorioModel.CadMedicos">
+              <MappingFragment StoreEntitySet="CadMedicos">
+                <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+                <ScalarProperty Name="Medico" ColumnName="Medico" />
+                <ScalarProperty Name="CRO" ColumnName="CRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CadPacientes">
+            <EntityTypeMapping TypeName="BDSistemaConsultorioModel.CadPacientes">
+              <MappingFragment StoreEntitySet="CadPacientes">
+                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+                <ScalarProperty Name="Paciente" ColumnName="Paciente" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManutUsers">
+            <EntityTypeMapping TypeName="BDSistemaConsultorioModel.ManutUsers">
+              <MappingFragment StoreEntitySet="ManutUsers">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Sobrenome" ColumnName="Sobrenome" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDSistemaConsultorioModelStoreContainer" CdmEntityContainer="BDSistemaConsultorioEntities">
+    <EntitySetMapping Name="AgendamentoConsultas">
+      <EntityTypeMapping TypeName="BDSistemaConsultorioModel.AgendamentoConsultas">
+        <MappingFragment StoreEntitySet="AgendamentoConsultas">
+          <ScalarProperty Name="idAgendamento" ColumnName="idAgendamento" />
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="idEspecialidade" ColumnName="idEspecialidade" />
+          <ScalarProperty Name="DataConsulta" ColumnName="DataConsulta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CadEspecialidades">
+      <EntityTypeMapping TypeName="BDSistemaConsultorioModel.CadEspecialidades">
+        <MappingFragment StoreEntitySet="CadEspecialidades">
+          <ScalarProperty Name="idEspecialidade" ColumnName="idEspecialidade" />
+          <ScalarProperty Name="Especialidade" ColumnName="Especialidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CadMedicos">
+      <EntityTypeMapping TypeName="BDSistemaConsultorioModel.CadMedicos">
+        <MappingFragment StoreEntitySet="CadMedicos">
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="Medico" ColumnName="Medico" />
+          <ScalarProperty Name="CRO" ColumnName="CRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CadPacientes">
+      <EntityTypeMapping TypeName="BDSistemaConsultorioModel.CadPacientes">
+        <MappingFragment StoreEntitySet="CadPacientes">
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="Paciente" ColumnName="Paciente" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManutUsers">
+      <EntityTypeMapping TypeName="BDSistemaConsultorioModel.ManutUsers">
+        <MappingFragment StoreEntitySet="ManutUsers">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Sobrenome" ColumnName="Sobrenome" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

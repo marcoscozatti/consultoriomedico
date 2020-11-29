@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDSistemaConsultorioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AgendamentoConsultas">
+    <Key>
+      <PropertyRef Name="idAgendamento" />
+    </Key>
+    <Property Name="idAgendamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPaciente" Type="int" Nullable="false" />
+    <Property Name="idMedico" Type="int" Nullable="false" />
+    <Property Name="idEspecialidade" Type="int" Nullable="false" />
+    <Property Name="DataConsulta" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CadEspecialidades">
+    <Key>
+      <PropertyRef Name="idEspecialidade" />
+    </Key>
+    <Property Name="idEspecialidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Especialidade" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CadMedicos">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Medico" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CRO" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CadPacientes">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="idPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Paciente" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="telefone" Type="int" />
+  </EntityType>
+  <EntityType Name="ManutUsers">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" />
+    <Property Name="Sobrenome" Type="nvarchar(max)" />
+    <Property Name="Usuario" Type="varchar" MaxLength="100" />
+    <Property Name="Senha" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_AgendamentoConsultas_CadEspecialidades">
+    <End Role="CadEspecialidades" Type="Self.CadEspecialidades" Multiplicity="1" />
+    <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadEspecialidades">
+        <PropertyRef Name="idEspecialidade" />
+      </Principal>
+      <Dependent Role="AgendamentoConsultas">
+        <PropertyRef Name="idEspecialidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgendamentoConsultas_CadMedicos">
+    <End Role="CadMedicos" Type="Self.CadMedicos" Multiplicity="1" />
+    <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadMedicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="AgendamentoConsultas">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgendamentoConsultas_CadPacientes">
+    <End Role="CadPacientes" Type="Self.CadPacientes" Multiplicity="1" />
+    <End Role="AgendamentoConsultas" Type="Self.AgendamentoConsultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadPacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="AgendamentoConsultas">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDSistemaConsultorioModelStoreContainer">
+    <EntitySet Name="AgendamentoConsultas" EntityType="Self.AgendamentoConsultas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CadEspecialidades" EntityType="Self.CadEspecialidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CadMedicos" EntityType="Self.CadMedicos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CadPacientes" EntityType="Self.CadPacientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ManutUsers" EntityType="Self.ManutUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AgendamentoConsultas_CadEspecialidades" Association="Self.FK_AgendamentoConsultas_CadEspecialidades">
+      <End Role="CadEspecialidades" EntitySet="CadEspecialidades" />
+      <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgendamentoConsultas_CadMedicos" Association="Self.FK_AgendamentoConsultas_CadMedicos">
+      <End Role="CadMedicos" EntitySet="CadMedicos" />
+      <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgendamentoConsultas_CadPacientes" Association="Self.FK_AgendamentoConsultas_CadPacientes">
+      <End Role="CadPacientes" EntitySet="CadPacientes" />
+      <End Role="AgendamentoConsultas" EntitySet="AgendamentoConsultas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

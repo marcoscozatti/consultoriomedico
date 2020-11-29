@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f879d4d92ac5455bb5398654a3774a49" Name="Diagram1">
+        <EntityTypeShape EntityType="BDSistemaConsultorioModel.AgendamentoConsultas" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDSistemaConsultorioModel.CadEspecialidades" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDSistemaConsultorioModel.CadMedicos" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDSistemaConsultorioModel.CadPacientes" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDSistemaConsultorioModel.ManutUsers" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="BDSistemaConsultorioModel.FK_AgendamentoConsultas_CadEspecialidades" ManuallyRouted="false" />
+        <AssociationConnector Association="BDSistemaConsultorioModel.FK_AgendamentoConsultas_CadMedicos" ManuallyRouted="false" />
+        <AssociationConnector Association="BDSistemaConsultorioModel.FK_AgendamentoConsultas_CadPacientes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
